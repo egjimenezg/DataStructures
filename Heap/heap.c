@@ -20,7 +20,7 @@ int main(){
   int heap[SIZE] = {9,11,3,49,10,1};
   buildMaxHeap(heap);
   printHeap(heap);
-  /*After the build-heap function the tree keep the max heap property in each 
+  /*After the build-heap function is called, the tree keeps the max heap property in each 
     subtree with the following structure:  49
                                          /    \
                                         11     3
@@ -54,7 +54,6 @@ void buildMaxHeap(int* heap){
 
   for(n=((SIZE/2)-1);n>=0;n--)
     heapify(heap,n);
-
 }
 
 void swap(int* positionFrom,int* positionTo){
