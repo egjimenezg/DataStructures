@@ -17,8 +17,16 @@ int main(){
                                /   \   /
                               49   10 1
   */
-                  
   int heap[SIZE] = {9,11,3,49,10,1};
+  buildMaxHeap(heap);
+  printHeap(heap);
+  /*After the build-heap function the tree keep the max heap property in each 
+    subtree with the following structure:  49
+                                         /    \
+                                        11     3
+                                       /  \    / 
+                                      9   10  1                                           
+  */
   return 0;
 }
 
@@ -27,16 +35,13 @@ void heapify(int* heap,int position){
   int rightPosition = right(position);
   int maxValuePosition;
 
-  if(leftPosition < SIZE && heap[leftPosition] > heap[position]){
+  if(leftPosition < SIZE && heap[leftPosition] > heap[position])
     maxValuePosition = leftPosition;
-  }
-  else{
+  else
     maxValuePosition = position;
-  }
 
-  if(rightPosition < SIZE && heap[rightPosition] > heap[maxValuePosition]){
+  if(rightPosition < SIZE && heap[rightPosition] > heap[maxValuePosition])
     maxValuePosition = rightPosition;
-  }
 
   if(maxValuePosition != position){
     swap(&heap[position],&heap[maxValuePosition]);
@@ -47,10 +52,9 @@ void heapify(int* heap,int position){
 void buildMaxHeap(int* heap){
   int n;
 
-  for(n=((SIZE/2)-1);n>=0;n--){
-    printf("HEAP_TO %d\n",heap[n]);
+  for(n=((SIZE/2)-1);n>=0;n--)
     heapify(heap,n);
-  }
+
 }
 
 void swap(int* positionFrom,int* positionTo){
