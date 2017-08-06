@@ -7,6 +7,8 @@
 
 void heapify(int*,int);
 void swap(int*,int*);
+void buildMaxHeap(int*);
+void printHeap(int*);
 
 int main(){
   /*The array represents the tree:  9 
@@ -17,7 +19,6 @@ int main(){
   */
                   
   int heap[SIZE] = {9,11,3,49,10,1};
-  //                0|1 |2| 3| 4|5 
   return 0;
 }
 
@@ -33,7 +34,7 @@ void heapify(int* heap,int position){
     maxValuePosition = position;
   }
 
-  if(rightPosition < SIZE && heap[rightPosition] > heap[position]){
+  if(rightPosition < SIZE && heap[rightPosition] > heap[maxValuePosition]){
     maxValuePosition = rightPosition;
   }
 
@@ -43,8 +44,24 @@ void heapify(int* heap,int position){
   }
 }
 
+void buildMaxHeap(int* heap){
+  int n;
+
+  for(n=((SIZE/2)-1);n>=0;n--){
+    printf("HEAP_TO %d\n",heap[n]);
+    heapify(heap,n);
+  }
+}
+
 void swap(int* positionFrom,int* positionTo){
   int temporalPosition = (*positionFrom); 
   (*positionFrom) = (*positionTo);
   (*positionTo) = temporalPosition; 
+}
+
+void printHeap(int *heap){
+  int i;
+  for(i=0;i<SIZE;i++)
+    printf("%d ",heap[i]);
+  printf("\n");
 }
