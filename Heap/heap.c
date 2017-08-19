@@ -31,22 +31,25 @@ int main(){
 }
 
 void heapify(int* heap,int position){
-  int leftPosition = left(position);
-  int rightPosition = right(position);
-  int maxValuePosition;
+  
+  int maxValuePosition = position;
 
-  if(leftPosition < SIZE && heap[leftPosition] > heap[position])
-    maxValuePosition = leftPosition;
-  else
-    maxValuePosition = position;
-
-  if(rightPosition < SIZE && heap[rightPosition] > heap[maxValuePosition])
-    maxValuePosition = rightPosition;
-
-  if(maxValuePosition != position){
+  do{
     swap(&heap[position],&heap[maxValuePosition]);
-    heapify(heap,maxValuePosition);
+    position += maxValuePosition - position;
+    int leftPosition = left(position);
+    int rightPosition = right(position);
+
+    if(leftPosition < SIZE && heap[leftPosition] > heap[position])
+      maxValuePosition = leftPosition;
+    else
+      maxValuePosition = position;
+
+    if(rightPosition < SIZE && heap[rightPosition] > heap[maxValuePosition])
+      maxValuePosition = rightPosition;
   }
+  while(maxValuePosition != position);
+    
 }
 
 void buildMaxHeap(int* heap){
