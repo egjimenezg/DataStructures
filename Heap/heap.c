@@ -1,36 +1,6 @@
-#include <stdio.h>
+#include "heap.h"
 
-#define parent(position) ( position > 1 ? (position-1)>>1 : 0)
-#define left(position) ( (position<<1)+1 )
-#define right(position) ( (position<<1)+2 )
-#define SIZE 6
-
-void heapify(int*,int);
-void swap(int*,int*);
-void buildMaxHeap(int*);
-void printHeap(int*);
-
-int main(){
-  /*The array represents the tree:  9 
-                                  /   \
-                                 11    3
-                               /   \   /
-                              49   10 1
-  */
-  int heap[SIZE] = {9,11,3,49,10,1};
-  buildMaxHeap(heap);
-  printHeap(heap);
-  /*After the build-heap function is called, the tree keeps the max heap property in each 
-    subtree with the following structure:  49
-                                         /    \
-                                        11     3
-                                       /  \    / 
-                                      9   10  1                                           
-  */
-  return 0;
-}
-
-void heapify(int* heap,int position){
+void heapify(int* heap,int position,int size){
   
   int maxValuePosition = position;
 
@@ -40,34 +10,27 @@ void heapify(int* heap,int position){
     int leftPosition = left(position);
     int rightPosition = right(position);
 
-    if(leftPosition < SIZE && heap[leftPosition] > heap[position])
+    if(leftPosition < size && heap[leftPosition] > heap[position])
       maxValuePosition = leftPosition;
     else
       maxValuePosition = position;
 
-    if(rightPosition < SIZE && heap[rightPosition] > heap[maxValuePosition])
+    if(rightPosition < size && heap[rightPosition] > heap[maxValuePosition])
       maxValuePosition = rightPosition;
   }
   while(maxValuePosition != position);
     
 }
 
-void buildMaxHeap(int* heap){
+void buildMaxHeap(int* heap,int size){
   int n;
 
-  for(n=((SIZE/2)-1);n>=0;n--)
-    heapify(heap,n);
+  for(n=((size/2)-1);n>=0;n--)
+    heapify(heap,n,size);
 }
 
 void swap(int* positionFrom,int* positionTo){
   int temporalPosition = (*positionFrom); 
   (*positionFrom) = (*positionTo);
   (*positionTo) = temporalPosition; 
-}
-
-void printHeap(int *heap){
-  int i;
-  for(i=0;i<SIZE;i++)
-    printf("%d ",heap[i]);
-  printf("\n");
 }
