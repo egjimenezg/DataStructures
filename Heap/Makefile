@@ -1,1 +1,1 @@
-all: ; gcc heap.c -o heap
+all: ; gcc -o main main.c heap.c
