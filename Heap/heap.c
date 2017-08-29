@@ -1,32 +1,33 @@
 #include "heap.h"
 
-void heapify(int* heap,int position,int size){
+void heapify(Heap* heap,int position){
   
   int maxValuePosition = position;
 
   do{
-    swap(&heap[position],&heap[maxValuePosition]);
+    swap(&(heap->items[position]),&(heap->items[maxValuePosition]));
     position += maxValuePosition - position;
     int leftPosition = left(position);
     int rightPosition = right(position);
 
-    if(leftPosition < size && heap[leftPosition] > heap[position])
+    if(leftPosition < heap->heapSize && (heap->items[leftPosition]) > (heap->items[position]))
       maxValuePosition = leftPosition;
     else
       maxValuePosition = position;
 
-    if(rightPosition < size && heap[rightPosition] > heap[maxValuePosition])
+    if(rightPosition < heap->heapSize && (heap->items[rightPosition]) > (heap->items[maxValuePosition]))
       maxValuePosition = rightPosition;
   }
   while(maxValuePosition != position);
     
 }
 
-void buildMaxHeap(int* heap,int size){
+void buildMaxHeap(Heap* heap,int size){
   int n;
+  heap->heapSize = size;
 
-  for(n=((size/2)-1);n>=0;n--)
-    heapify(heap,n,size);
+  for(n=((heap->heapSize/2)-1);n>=0;n--)
+    heapify(heap,n);
 }
 
 void swap(int* positionFrom,int* positionTo){
