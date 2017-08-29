@@ -30,6 +30,16 @@ void buildMaxHeap(Heap* heap,int size){
     heapify(heap,n);
 }
 
+void heapSort(Heap* heap,int size){
+  int i=0;
+  buildMaxHeap(heap,size);
+  for(i=size-1;i>=1;i--){
+    swap(&heap->items[0],&heap->items[i]);
+    heap->heapSize = heap->heapSize-1;
+    heapify(heap,0);
+  }
+}
+
 void swap(int* positionFrom,int* positionTo){
   int temporalPosition = (*positionFrom); 
   (*positionFrom) = (*positionTo);

@@ -11,4 +11,4 @@ typedef struct Heap{
 void heapify(Heap*,int);
 void swap(int*,int*);
 void buildMaxHeap(Heap*,int);
-void sort(int*,int);
+void heapSort(Heap*,int);
