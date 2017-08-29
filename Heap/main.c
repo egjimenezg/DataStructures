@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "heap.h"
 #define SIZE 6
 
@@ -11,9 +12,16 @@ int main(){
                                /   \   /
                               49   10 1
   */
-  int heap[SIZE] = {9,11,3,49,10,1};
-  buildMaxHeap(heap,SIZE);
-  printHeap(heap);
+  int items[SIZE] = {9,11,3,49,10,1};
+  int i;
+
+  Heap heap;
+  heap.items = (int*)malloc(SIZE*sizeof(int));
+  for(i=0;i<SIZE;i++)
+    heap.items[i] = items[i];
+
+  buildMaxHeap(&heap,SIZE);
+  printHeap(heap.items);
   /*After the build-heap function is called, the tree keeps the max heap property in each 
     subtree with the following structure:  49
                                          /    \
