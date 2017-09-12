@@ -1,14 +1,16 @@
 #include "heap.h"
 
-void heapify(Heap* heap,int position){
+void heapify(Heap* heap,long position){
   
-  int maxValuePosition = position;
+  long maxValuePosition = position;
+  long leftPosition;
+  long rightPosition;
 
   do{
     swap(&(heap->items[position]),&(heap->items[maxValuePosition]));
-    position += maxValuePosition - position;
-    int leftPosition = left(position);
-    int rightPosition = right(position);
+    position = maxValuePosition;
+    leftPosition = left(position);
+    rightPosition = right(position);
 
     if(leftPosition < heap->heapSize && (heap->items[leftPosition]) > (heap->items[position]))
       maxValuePosition = leftPosition;
@@ -22,15 +24,15 @@ void heapify(Heap* heap,int position){
     
 }
 
-void buildMaxHeap(Heap* heap,int size){
-  int n;
+void buildMaxHeap(Heap* heap,long size){
+  long n;
   heap->heapSize = size;
 
   for(n=((heap->heapSize/2)-1);n>=0;n--)
     heapify(heap,n);
 }
 
-void heapSort(Heap* heap,int size){
+void heapSort(Heap* heap,long size){
   int i=0;
   buildMaxHeap(heap,size);
   for(i=size-1;i>=1;i--){
@@ -40,7 +42,7 @@ void heapSort(Heap* heap,int size){
   }
 }
 
-void swap(int* positionFrom,int* positionTo){
+void swap(long* positionFrom,long* positionTo){
   int temporalPosition = (*positionFrom); 
   (*positionFrom) = (*positionTo);
   (*positionTo) = temporalPosition; 

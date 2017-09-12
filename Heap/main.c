@@ -3,7 +3,7 @@
 #include "heap.h"
 #define SIZE 6
 
-void printHeap(int*);
+void printHeap(HeapEntry*);
 
 int main(){
   /*The array represents the tree:  9 
@@ -12,11 +12,11 @@ int main(){
                                /   \   /
                               49   10 1
   */
-  int items[SIZE] = {9,11,3,49,10,1};
+  long items[SIZE] = {9,11,3,49,10,1};
   int i;
 
   Heap heap;
-  heap.items = (int*)malloc(SIZE*sizeof(int));
+  heap.items = (HeapEntry*)malloc(SIZE*sizeof(HeapEntry));
   for(i=0;i<SIZE;i++)
     heap.items[i] = items[i];
 
@@ -33,14 +33,16 @@ int main(){
   
   heapSort(&heap,SIZE); 
   printHeap(heap.items);
-
   /*After applying HeapSort algorithm the items of the heap are ordered (1,3,9,10,11,49)*/
+
+  free(heap.items);
+  
   return 0;
 }
 
-void printHeap(int *heap){
+void printHeap(HeapEntry *heap){
   int i;
   for(i=0;i<SIZE;i++)
-    printf("%d ",heap[i]);
+    printf("%ld ",heap[i]);
   printf("\n");
 }

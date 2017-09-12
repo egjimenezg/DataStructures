@@ -3,12 +3,14 @@
 #define right(position) ( (position<<1)+2 )
 #include <stdio.h>
 
+typedef long HeapEntry;
+
 typedef struct Heap{
-  int* items; 
-  int heapSize;
+  HeapEntry* items; 
+  long heapSize;
 } Heap;
 
-void heapify(Heap*,int);
-void swap(int*,int*);
-void buildMaxHeap(Heap*,int);
-void heapSort(Heap*,int);
+void heapify(Heap*,long);
+void swap(long*,long*);
+void buildMaxHeap(Heap*,long);
+void heapSort(Heap*,long);

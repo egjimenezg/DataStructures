@@ -3,3 +3,4 @@
 
 main: main.o heap.o
 	gcc -Wall -o $@ $^
+
