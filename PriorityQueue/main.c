@@ -33,7 +33,7 @@ int main(){
   */
   incrementValue(&queue,5,10);
   printf("\nThe value at position 5 is updated by 10\n");
-  /*After the item at position 5 is updated, the queue is as follows         55
+  /*After the item at position 5 is updated, the queue is as follows         54
                                                                             /   \
                                                                           39     10 -----> Updated item
                                                                          /  \   /  \
