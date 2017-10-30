@@ -23,7 +23,25 @@ int main(){
   queue_entry max = extractMax(&queue);
   printf("Max entry in the PriorityQueue %ld\n",max);
   printQueue(queue);
-
+  /*When the max value is extracted, the queue has the following structure   54
+                                                                            /   \
+                                                                          39     8
+                                                                         /  \   /  \
+                                                                        35   4 3    1
+                                                                       / \
+                                                                      13  9
+  */
+  incrementValue(&queue,5,10);
+  printf("\nThe value at position 5 is updated by 10\n");
+  /*After the item at position 5 is updated, the queue is as follows         55
+                                                                            /   \
+                                                                          39     10 -----> Updated item
+                                                                         /  \   /  \
+                                                                        35   4 8    1
+                                                                       / \
+                                                                      13  9*/
+  printQueue(queue);
+  
   free(queue.items);
   return 0;
 }
